@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>특허침해금지가처분 검토 | 세강스틸러스–엠에스파이프 (2026.7.30 미팅자료)</title>
+<style>
+  :root{
+    --navy:#12315b;
+    --navy-light:#1e4a86;
+    --accent:#0f766e;
+    --line:#d8dee8;
+    --bg:#f4f6f9;
+    --paper:#ffffff;
+    --text:#1f2937;
+    --sub:#5b6675;
+    --warn-bg:#fff8e6;
+    --warn-line:#e0ad3a;
+    --key-bg:#eef4ff;
+    --key-line:#2f5fa8;
+    --red:#b3261e;
+    --amber:#b45309;
+    --green:#15803d;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Pretendard","Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",
+                "Noto Sans KR",system-ui,-apple-system,sans-serif;
+    font-size:16px;
+    line-height:1.75;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:16px;}
+  .paper{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:28px 30px 34px;
+    margin-bottom:22px;
+    box-shadow:0 1px 3px rgba(18,49,91,.06);
+  }
+
+  /* ── 표지 ── */
+  .cover{text-align:center;border-top:5px solid var(--navy);}
+  .cover h1{
+    font-size:1.6rem;letter-spacing:.22em;color:var(--navy);
+    margin:14px 0 6px;line-height:1.5;font-weight:800;
+  }
+  .cover .subtitle{
+    font-size:1rem;color:var(--sub);font-weight:500;
+    margin:0 auto 18px;max-width:640px;line-height:1.7;
+  }
+  .cover .tag{
+    display:inline-block;border:1px solid var(--navy);color:var(--navy);
+    padding:3px 16px;border-radius:999px;font-size:.85rem;letter-spacing:.3em;
+    margin-bottom:22px;
+  }
+  .cover .notice{
+    margin-top:24px;font-size:.85rem;color:var(--sub);
+    background:var(--bg);border:1px dashed var(--line);
+    border-radius:8px;padding:12px 14px;text-align:left;
+  }
+
+  /* ── 제목 ── */
+  h2.sec{
+    font-size:1.18rem;color:var(--navy);font-weight:800;
+    border-left:6px solid var(--navy);padding:2px 0 2px 12px;
+    margin:34px 0 16px;
+  }
+  .paper > h2.sec:first-child{margin-top:4px;}
+  h3.sub{
+    font-size:1.02rem;color:var(--navy-light);font-weight:700;
+    margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);
+  }
+  h4.item{
+    font-size:.98rem;font-weight:700;color:var(--text);
+    margin:22px 0 8px;
+  }
+  h4.item .grade{margin-left:6px;}
+  p{margin:0 0 12px;}
+  .lead{font-size:.97rem;}
+
+  /* ── 리스트(원문 불릿 유지) ── */
+  ul.doc{margin:0 0 14px;padding-left:20px;}
+  ul.doc > li{margin-bottom:9px;}
+  ol.doc{margin:0 0 14px;padding-left:22px;}
+  ol.doc > li{margin-bottom:9px;}
+  .num{
+    display:inline-block;font-weight:800;color:var(--navy);
+    margin-right:4px;
+  }
+
+  /* ── 강조 요소 ── */
+  strong{color:#0b2545;font-weight:700;}
+  .hl{background:linear-gradient(transparent 58%,#ffe9a8 58%);font-weight:700;}
+  .hl-red{color:var(--red);font-weight:700;}
+  .key{
+    background:var(--key-bg);border-left:5px solid var(--key-line);
+    border-radius:0 8px 8px 0;padding:14px 16px;margin:16px 0;
+    font-size:.95rem;
+  }
+  .key .label{
+    display:block;font-weight:800;color:var(--key-line);
+    font-size:.85rem;letter-spacing:.08em;margin-bottom:4px;
+  }
+  .caution{
+    background:var(--warn-bg);border:1px solid var(--warn-line);
+    border-radius:8px;padding:13px 15px;margin:16px 0;font-size:.92rem;
+  }
+  .caution::before{content:"※ ";font-weight:800;color:var(--amber);}
+  .concl{
+    border:2px solid var(--navy);border-radius:8px;
+    padding:16px 18px;margin:22px 0 4px;background:#fbfcfe;font-size:.97rem;
+  }
+  .concl .label{
+    display:inline-block;background:var(--navy);color:#fff;
+    font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:4px;
+    margin-right:8px;vertical-align:2px;
+  }
+
+  /* ── 논점 박스 ── */
+  .issue{
+    border:1px solid var(--line);border-radius:9px;
+    margin:0 0 16px;overflow:hidden;background:#fff;
+  }
+  .issue > .head{
+    background:var(--navy);color:#fff;padding:9px 14px;
+    font-weight:700;font-size:.96rem;display:flex;gap:10px;align-items:baseline;
+    flex-wrap:wrap;
+  }
+  .issue > .head .no{
+    background:rgba(255,255,255,.18);border-radius:4px;
+    padding:1px 8px;font-size:.82rem;letter-spacing:.05em;white-space:nowrap;
+  }
+  .issue > .body{padding:14px 16px 4px;font-size:.95rem;}
+  .issue > .body ul.doc{margin-bottom:10px;}
+  .arrow{color:var(--navy);font-weight:800;}
+
+  /* ── 배지 ── */
+  .grade{
+    display:inline-block;font-size:.78rem;font-weight:800;
+    padding:1px 9px;border-radius:999px;white-space:nowrap;line-height:1.6;
+  }
+  .g-mid{background:#dcefe6;color:#0f5c46;border:1px solid #86c3ae;}
+  .g-midlow{background:#e6eefb;color:#1d4d92;border:1px solid #9bbbe6;}
+  .g-low{background:#f2f0ec;color:#6b6257;border:1px solid #cfc7b9;}
+  .g-lowest{background:#fbe9e7;color:var(--red);border:1px solid #e8a9a2;}
+  .mk{font-weight:800;font-size:1.02rem;}
+  .mk-o{color:var(--green);}
+  .mk-t{color:var(--amber);}
+  .mk-x{color:var(--red);}
+  .legend{font-size:.86rem;color:var(--sub);margin:0 0 14px;}
+
+  /* ── 표 ── */
+  .t-wrap{margin:0 0 18px;}
+  table{
+    width:100%;border-collapse:collapse;background:#fff;
+    font-size:.92rem;
+  }
+  caption{
+    text-align:left;font-weight:700;color:var(--navy);
+    font-size:.95rem;padding:0 0 7px;
+  }
+  th,td{
+    border:1px solid var(--line);padding:9px 11px;
+    vertical-align:top;text-align:left;
+  }
+  thead th{
+    background:var(--navy);color:#fff;font-weight:700;
+    text-align:center;white-space:nowrap;
+  }
+  tbody tr:nth-child(even) td{background:#fafbfd;}
+  td.c,th.c{text-align:center;}
+  .t-info th{background:#eef1f6;color:var(--navy);width:26%;white-space:nowrap;text-align:center;}
+  .nowrap{white-space:nowrap;}
+
+  /* 요약 카드 */
+  .sumgrid{display:grid;gap:12px;grid-template-columns:1fr;margin:0 0 6px;}
+  .sumcard{
+    border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:0 8px 8px 0;padding:13px 15px;background:#fff;font-size:.95rem;
+  }
+  .sumcard .t{display:block;font-weight:800;color:var(--navy);margin-bottom:3px;}
+
+  footer{
+    text-align:center;color:var(--sub);font-size:.83rem;
+    padding:6px 0 30px;line-height:1.8;
+  }
+
+  /* ── 태블릿 ── */
+  @media (max-width:820px){
+    body{font-size:15.5px;}
+    .wrap{padding:12px;}
+    .paper{padding:22px 18px 26px;}
+    .cover h1{font-size:1.32rem;letter-spacing:.14em;}
+    table{font-size:.9rem;}
+    th,td{padding:8px 9px;}
+  }
+
+  /* ── 모바일: 표 → 카드 전환 ── */
+  @media (max-width:640px){
+    body{font-size:15px;line-height:1.72;}
+    .paper{padding:18px 14px 22px;border-radius:8px;}
+    h2.sec{font-size:1.08rem;}
+    .cover h1{font-size:1.15rem;letter-spacing:.08em;}
+    .cover .tag{letter-spacing:.18em;}
+    ul.doc,ol.doc{padding-left:18px;}
+
+    table,thead,tbody,tr,th,td{display:block;width:100%;}
+    thead{display:none;}
+    caption{padding-bottom:6px;}
+    tbody tr{
+      border:1px solid var(--line);border-radius:8px;
+      margin-bottom:11px;overflow:hidden;background:#fff;
+    }
+    tbody tr:nth-child(even) td{background:#fff;}
+    tbody td{
+      border:0;border-bottom:1px dashed var(--line);
+      padding:9px 12px;text-align:left !important;
+    }
+    tbody tr td:last-child{border-bottom:0;}
+    tbody td::before{
+      content:attr(data-label);
+      display:block;font-size:.76rem;font-weight:800;
+      color:var(--navy-light);letter-spacing:.03em;margin-bottom:2px;
+    }
+    tbody td[data-label=""]::before{display:none;}
+    .t-info tbody td:first-child{
+      background:#eef1f6;color:var(--navy);font-weight:700;
+    }
+    .t-info tbody td:first-child::before{display:none;}
+    .nowrap{white-space:normal;}
+  }
+
+  /* ── 인쇄 ── */
+  @media print{
+    body{background:#fff;font-size:10.5pt;}
+    .wrap{max-width:none;padding:0;}
+    .paper{
+      border:0;box-shadow:none;border-radius:0;
+      padding:0 0 10pt;margin:0 0 10pt;page-break-after:always;
+    }
+    .paper:last-of-type{page-break-after:auto;}
+    table,thead,tbody,tr,th,td{display:revert;}
+    thead{display:table-header-group;}
+    tbody td::before{display:none;}
+    tr,.issue,.key,.sumcard{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ══════════ 표지 ══════════ -->
+  <section class="paper cover">
+    <h1>특 허 침 해 금 지 가 처 분 검 토</h1>
+    <p class="subtitle">— 엠에스파이프 등록특허(제10-2894999호) 장치의<br>
+      세강스틸러스 등록특허 침해 여부 및 논점 —</p>
+    <span class="tag">미 팅 자 료</span>
+
+    <div class="t-wrap">
+      <table class="t-info">
+        <tbody>
+          <tr><td>의뢰인</td><td data-label="의뢰인">(주)세강스틸러스</td></tr>
+          <tr><td>대상 경쟁사</td><td data-label="대상 경쟁사">엠에스파이프(주)</td></tr>
+          <tr><td>검토 대상 권리</td><td data-label="검토 대상 권리">세강스틸러스 등록특허 5건 vs 엠에스파이프 등록특허 제10-2894999호</td></tr>
+          <tr><td>미팅 일자</td><td data-label="미팅 일자">2026. 7. 30.</td></tr>
+          <tr><td>작성</td><td data-label="작성">청암국제특허법률사무소</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="notice">본 자료는 2026. 7. 30. 미팅에서의 신규 선임 및 대응방향 논의를 위한 <strong>내부 검토용</strong>으로,
+      확정적 침해 감정이 아니며 대외 제출·유통을 전제로 하지 않습니다.</p>
+  </section>
+
+  <!-- ══════════ 검토 요약 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">검토 요약</h2>
+    <p class="lead">엠에스파이프의 등록특허 제10-2894999호 「강관 전조가공장치」의 도면에 표시된 장치가
+      세강스틸러스의 등록특허 5건을 침해하는지 검토한 결과, 요지는 다음과 같습니다.</p>
+
+    <div class="sumgrid">
+      <div class="sumcard">
+        <span class="t">① 전체 골격 유사</span>
+        엠에스파이프의 등록특허 도면에 표시된 장치는 세강스틸러스의 보유 특허들과 동일하게
+        「강관공급부 → 전조가공부 → 강관적재부」의 3부 구조와 ‘강관을 한 개씩 순차 투입·배출’하는 개념을 공유합니다.
+      </div>
+      <div class="sumcard">
+        <span class="t">② 문언침해는 곤란</span>
+        그러나 세강스틸러스의 등록특허 각 독립항(청구항1)은 위 상위 골격이 아니라, 특정한 하위 세부구조
+        (경로가이드모듈·회동식 이탈방지모듈 등)를 필수요소로 한정하고 있고, 엠에스파이프는 그 부분을 다른 기구로 치환하였습니다.
+        <span class="hl">전(全)요소 구비의 원칙상 어느 특허도 문언침해가 명확히 성립한다고 보기 어렵습니다.</span>
+      </div>
+      <div class="sumcard">
+        <span class="t">③ 승부처는 균등론·이용관계</span>
+        침해 주장은 사실상 균등론(및 특허법 제98조 이용관계)에 의존하며, 5건 중 배출측 구조를 다투는
+        <strong>제10-2633674호</strong>가 상대적으로 가장 유리(등급 <span class="grade g-mid">중</span>)하고,
+        피딩장치가 대응되는 <strong>제10-2609914호</strong>가 그 다음입니다.
+      </div>
+      <div class="sumcard">
+        <span class="t">④ 실무상 최대 관건은 ‘실시(實施) 증거’</span>
+        현재 확보된 것은 엠에스파이프의 등록특허 도면뿐이며, <span class="hl-red">등록특허 보유 자체는 침해가 아닙니다.</span>
+        가처분의 보전의 필요성을 위해서는 엠에스파이프가 해당 장치를 실제 제조·판매·사용하고 있다는
+        증거 확보가 선결과제입니다.
+      </div>
+    </div>
+
+    <div class="concl">
+      <span class="label">결론</span>
+      가처분 인용 가능성을 낙관하기는 어려우나, <strong>제10-2633674호를 주위적, 제10-2609914호를 예비적</strong>으로 하여
+      균등론·이용관계를 병행 주장하는 구성이 현실적이며, 이하 상세 분석합니다.
+    </div>
+  </section>
+
+  <!-- ══════════ Ⅰ. 검토 배경 및 목적 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">Ⅰ. 검토 배경 및 목적</h2>
+
+    <h3 class="sub">1. 분쟁 경위</h3>
+    <ul class="doc">
+      <li>세강스틸러스는 강관 전조(轉造) 제조장치에 관한 등록특허 <strong>5건</strong>을 보유하고 있으며,
+        경쟁사 엠에스파이프가 <strong>2025. 3. 17. 출원하여 2025. 11. 28. 등록</strong>한 특허 제10-2894999호의
+        도면상 장치가 자사 특허권을 침해할 가능성이 있다고 보고 있습니다.</li>
+      <li>이에 청암국제특허법률사무소를 통해 엠에스파이프에 ‘등록특허에 대한 침해 가능성 통지’ 경고장
+        (세강 특허 4건 근거)을 발송한 바 있습니다.</li>
+    </ul>
+
+    <h3 class="sub">2. 검토 목적 및 범위</h3>
+    <ul class="doc">
+      <li>미팅에서의 신규 선임 여부 및 대응방향(가처분·본안·심판) 결정을 지원하기 위한 침해 가능성·논점 정리.</li>
+      <li>검토 대상 : 세강 등록특허 5건(제10-2365435·2609914·2633673·2633674·2693178호)의 독립항
+        ↔ 엠에스 제10-2894999호 도면 장치.</li>
+    </ul>
+
+    <p class="caution">유의 : 본 검토는 엠에스파이프의 <strong>등록특허 도면(공보상 실시예)</strong>을 기준으로 한 것으로,
+      엠에스파이프가 실제 제작·판매하는 장치의 구체적 사양이 확인되면 결론이 달라질 수 있습니다.</p>
+  </section>
+
+  <!-- ══════════ Ⅱ. 대상 특허 개요 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">Ⅱ. 대상 특허 개요</h2>
+
+    <h3 class="sub">1. 세강스틸러스 등록특허 (검토대상 권리)</h3>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:15%">등록번호</th>
+            <th style="width:22%">명칭</th>
+            <th style="width:13%">등록일</th>
+            <th>청구항1(독립항) 특징부 요지</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2365435</strong></td>
+            <td data-label="명칭">강관 전조 제조 장치</td>
+            <td class="c nowrap" data-label="등록일">2022.02.16</td>
+            <td data-label="청구항1 특징부 요지">공급측 <strong>제1경로가이드모듈</strong>(가이드하우징 4-플레이트 + 하측 구름롤러 + 상하구동기로 승강하는 상측 구름롤러)</td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2609914</strong></td>
+            <td data-label="명칭">강관 피딩 장치를 구비한 강관 전조 제조 장치</td>
+            <td class="c nowrap" data-label="등록일">2023.11.30</td>
+            <td data-label="청구항1 특징부 요지"><strong>강관피딩장치</strong>(헤드부+실린더로 강관 단부를 밀어 공급) + 배출측 <strong>제2경로가이드모듈</strong>(상동 구조)</td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2633673</strong></td>
+            <td data-label="명칭">강관 전조 제조 장치</td>
+            <td class="c nowrap" data-label="등록일">2024.01.31</td>
+            <td data-label="청구항1 특징부 요지">공급측 <strong>전달모듈</strong>(승강하며 강관을 하나씩 인출) + <strong>회동식 이탈방지모듈</strong>(회동바·링크암·구동실린더·원운동 차단브라켓)</td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2633674</strong></td>
+            <td data-label="명칭">강관 전조 제조 장치</td>
+            <td class="c nowrap" data-label="등록일">2024.01.31</td>
+            <td data-label="청구항1 특징부 요지">배출/적재측 <strong>전달모듈</strong> + <strong>회동식 이탈방지모듈</strong>(구조는 2633673과 대칭, 배출측에 적용)</td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2693178</strong></td>
+            <td data-label="명칭">강관 전조 제조 시스템</td>
+            <td class="c nowrap" data-label="등록일">2024.08.05</td>
+            <td data-label="청구항1 특징부 요지"><strong>복수개</strong>의 전조 제조 장치 + <strong>분배장치</strong>(로봇암 등)로 강관을 배분·공급하는 ‘시스템’ 청구항</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">2. 엠에스파이프 등록특허 제10-2894999호 「강관 전조가공장치」</h3>
+    <ul class="doc">
+      <li>출원 2025. 3. 17. / 등록 2025. 11. 28. / 특허권자 엠에스파이프(주) / 발명자 김광호·김태수 / 대리인 특허법인 태동.</li>
+      <li>청구항 총 3항(독립항 1, 종속항 2·4; 청구항3 삭제). 스스로 ‘개량특허’를 표방하며,
+        명세서 종래기술로 <span class="hl">세강스틸러스의 공개특허(제10-2023-0083090호)를 직접 인용</span>하고 있습니다.</li>
+      <li><strong>장치 구성(도1~11)</strong> : 강관적재베드(110, 수평/경사베드) → 강관투입모듈(120, 원판형 로터리키커121이 회전하여 강관을 하나씩 투입)
+        → 강관공급부(130, 아이들 이송롤러133 + 고정식 이탈방지가이드135) → 푸싱부(140, 푸셔141) → 전조가공부(150)
+        → 전조관배출부(160, 배출롤러163) → 배출견인부(170, 클램프+이송실린더로 기준길이씩 견인)
+        → 전조관이송부(190, 회동식 키커레버193 + 좌우회전 로터리핑거197) → 전조관적재부(180).</li>
+    </ul>
+
+    <div class="key">
+      <span class="label">핵심 시사점</span>
+      엠에스파이프의 등록특허가 세강스틸러스의 선(先)공개기술을 종래기술로 인용하고 있다는 사실은
+      <strong>이용관계(제98조) 주장의 정황</strong>이 되는 동시에, 심사관이 양자의 차이를 인정하여 등록시킨 것이므로
+      상대방의 <strong>설계회피·비침해 항변의 근거</strong>로도 원용될 수 있는 <span class="hl">양면적 사실</span>입니다.
+    </div>
+  </section>
+
+  <!-- ══════════ Ⅲ. 침해 판단의 기준 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">Ⅲ. 침해 판단의 기준 (방법론)</h2>
+    <ul class="doc">
+      <li><strong>전(全)요소 구비의 원칙</strong> : 침해가 성립하려면 대상 물건이 청구항에 기재된 모든 구성요소를 그대로 구비해야 하며,
+        하나라도 결여되면 문언침해는 성립하지 않습니다.</li>
+      <li><strong>균등론(3요건)</strong> : 구성이 문언상 다르더라도 <span class="num">①</span>과제해결원리의 동일성,
+        <span class="num">②</span>치환가능성(동일 작용효과), <span class="num">③</span>치환의 자명성이 인정되면 균등침해가 성립할 수 있습니다
+        (단, 출원경과금반언·자유실시기술 등 소극요건 없어야 함).</li>
+      <li><strong>이용관계(특허법 제98조)</strong> : 후출원 등록특허라도 선출원 타인 특허발명을 ‘이용’하는 경우
+        그 특허권자 허락 없이 실시할 수 없으며, 이용관계는 후발명이 선발명의 구성요소를 <strong>실질적으로 전부 포함</strong>할 것을 요합니다.
+        따라서 이용관계 역시 위 요소 대비의 결과에 좌우됩니다(<span class="hl-red">등록특허 보유가 곧 실시 면책은 아님</span>).</li>
+    </ul>
+  </section>
+
+  <!-- ══════════ Ⅳ. 구성요소 대비 분석 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">Ⅳ. 구성요소 대비 분석 (Claim Chart)</h2>
+    <p>세강스틸러스의 등록특허 5건을 스크리닝한 뒤, 침해 가능성이 상대적으로 높은 핵심 특허를 정밀 대비하고, 나머지는 요약합니다.</p>
+    <p class="legend">범례 : <span class="mk mk-o">○</span> 대응 &nbsp;|&nbsp;
+      <span class="mk mk-t">△</span> 구조 상이·균등 검토 &nbsp;|&nbsp;
+      <span class="mk mk-x">✕</span> 흠결</p>
+
+    <h4 class="item">1. 제10-2633674호 (배출/적재측 구조) — 상대적 최우선
+      <span class="grade g-mid">등급 중</span></h4>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:38%">세강 청구항1 구성요소</th>
+            <th style="width:41%">엠에스 제10-2894999호 대응</th>
+            <th style="width:11%">대비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="세강 구성요소">강관공급부(103)</td>
+            <td data-label="엠에스 대응">강관적재베드(110)+투입모듈(120)+공급부(130)+푸싱부(140)</td>
+            <td class="c" data-label="대비"><span class="mk mk-o">○</span></td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소">전조가공부(105)</td>
+            <td data-label="엠에스 대응">전조가공부(150) (명세서상 ‘종래와 동일’)</td>
+            <td class="c" data-label="대비"><span class="mk mk-o">○</span></td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소">강관적재부(109) = 전달프레임부(109a)+적재프레임부(109b)</td>
+            <td data-label="엠에스 대응">전조관배출부(160)+전조관이송부(190)+전조관적재부(180)</td>
+            <td class="c" data-label="대비"><span class="mk mk-o">○</span></td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소">이송가이드프레임(109a-1)</td>
+            <td data-label="엠에스 대응">전조관이송레일(191)/전조관배출부(160)</td>
+            <td class="c" data-label="대비"><span class="mk mk-o">○</span></td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소"><strong>전달모듈(109a-2)</strong> : 완료강관을 인출하여 적재프레임부로 전달</td>
+            <td data-label="엠에스 대응"><strong>키커레버(193)</strong> : 회동하며 전조관을 배출롤러→이송레일로 들어올림</td>
+            <td class="c" data-label="대비"><span class="mk mk-t">△</span><br>균등</td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소"><strong>이탈방지모듈(109a-3)</strong> : 브라켓패널+회동바+링크암(구동실린더)+원운동 차단브라켓</td>
+            <td data-label="엠에스 대응"><strong>로터리핑거(197)</strong> : 회전축 중심 좌우회전하며 전조관 이동 저지/해제 (+키커레버 절곡지지판193-1)</td>
+            <td class="c" data-label="대비"><span class="mk mk-t">△</span><br>균등</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">
+      <span class="label">판단</span>
+      엠에스파이프의 배출측에 실제로 <strong>회동식 이송기구(키커레버)</strong>와 <strong>회동식 정지기구(로터리핑거)</strong>가 존재하여,
+      5건 중 <span class="hl">유일하게 세강스틸러스의 ‘회동식 전달·이탈방지’ 개념과 하드웨어가 공명</span>합니다.
+      다만 세부구조(브라켓패널·링크암·차단브라켓의 원운동)와 작동방향이 문언상 일치하지는 않으므로
+      <span class="hl-red">문언침해는 불성립</span>, 균등론 주장이 필요합니다.
+      과제해결원리(회동 부재로 전조관을 이송하며 이탈·추락 방지)를 공유한다는 점이 균등 논거입니다.
+    </div>
+
+    <h4 class="item">2. 제10-2609914호 (강관피딩장치) — 예비적
+      <span class="grade g-midlow">등급 중하</span></h4>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:38%">세강 청구항1 구성요소</th>
+            <th style="width:41%">엠에스 제10-2894999호 대응</th>
+            <th style="width:11%">대비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="세강 구성요소">적재프레임부(103a) / 전달프레임부(103b)</td>
+            <td data-label="엠에스 대응">강관적재베드(110)/투입모듈(120)</td>
+            <td class="c" data-label="대비"><span class="mk mk-o">○</span></td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소"><strong>강관피딩장치(150)</strong> : 헤드부(150a)+실린더부(150b)로 강관 단부를 전조가공부로 밀어줌</td>
+            <td data-label="엠에스 대응"><strong>푸싱부(140)</strong> : 푸셔(141)가 강관 후단을 가압하여 강관유입관으로 밀어넣음</td>
+            <td class="c" data-label="대비"><span class="mk mk-o">○</span><br>문언 대응</td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소"><strong>제2경로가이드모듈(113)</strong> : 가이드하우징(601, 4-플레이트)+하측 구름롤러(603)+상하구동 상측 구름롤러(605)</td>
+            <td data-label="엠에스 대응">전조관배출부(160) : 아이들 배출롤러(163)+고정식 이탈방지가이드(165)</td>
+            <td class="c" data-label="대비"><span class="mk mk-x">✕</span><br>흠결</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">
+      <span class="label">판단</span>
+      피딩장치 ↔ 푸싱부의 대응은 5건 중 <strong>가장 깨끗한 문언 대응</strong>입니다.
+      그러나 청구항1이 이와 AND로 결합한 제2경로가이드모듈(4-플레이트 하우징·승강 상측롤러)이 엠에스파이프에 없어
+      <span class="hl-red">전요소 충족이 되지 않습니다.</span>
+      엠에스파이프의 변형예(도11)에 등장하는 상부가압모듈(167, 승강 가압판, ‘아이들롤러 형태 가능’)을 원용해
+      상측롤러 균등을 보조 논증할 여지는 있으나, 4-플레이트 하우징 흠결은 남습니다.
+    </div>
+
+    <h4 class="item">3. 제10-2633673호 (투입측 구조) — 보조
+      <span class="grade g-low">등급 하</span></h4>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:38%">세강 청구항1 구성요소</th>
+            <th style="width:41%">엠에스 제10-2894999호 대응</th>
+            <th style="width:11%">대비</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="세강 구성요소"><strong>전달모듈(103b-2)</strong> : 승강하며 적재된 강관을 하나씩 인출하여 이송가이드프레임으로 전달</td>
+            <td data-label="엠에스 대응"><strong>강관투입모듈(120)</strong> : 원판형 로터리키커(121)가 회전하여 강관을 하나씩 투입</td>
+            <td class="c" data-label="대비"><span class="mk mk-t">△</span><br>균등(구조 상이)</td>
+          </tr>
+          <tr>
+            <td data-label="세강 구성요소"><strong>이탈방지모듈(103b-3)</strong> : 회동식(회동바·링크암·구동실린더·원운동 차단브라켓)</td>
+            <td data-label="엠에스 대응">고정식 이탈방지가이드(135) : L자 측면부재+ㄱ자 상부부재(수동 높이조정)</td>
+            <td class="c" data-label="대비"><span class="mk mk-x">✕</span><br>흠결</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="key">
+      <span class="label">판단</span>
+      ‘강관을 하나씩 순차 투입’하는 개념은 대응하나, 이 특허의 요지인 <strong>회동식 이탈방지모듈</strong>이
+      엠에스(고정식 가이드)에 전무합니다. <span class="hl">고정↔회동은 작동원리가 상이하여 균등 포섭도 어렵습니다.</span>
+    </div>
+
+    <h4 class="item">4. 제10-2365435호·제10-2693178호
+      <span class="grade g-low">등급 하</span> <span class="grade g-lowest">최하</span></h4>
+    <ul class="doc">
+      <li><strong>제10-2365435호 <span class="grade g-low">하</span></strong> :
+        청구항1이 제1경로가이드모듈(승강 구름롤러+4-플레이트 하우징)로 좁게 한정되어 있으나,
+        엠에스파이프는 아이들 롤러+고정 가이드를 채택 <span class="arrow">→</span> 핵심 요소 흠결, 균등 곤란.</li>
+      <li><strong>제10-2693178호 <span class="grade g-lowest">최하 / 사실상 비침해</span></strong> :
+        ‘복수개의 전조 제조 장치 + 분배장치(로봇 배분)’를 전제로 한 시스템 청구항.
+        엠에스파이프는 단일 장치로, 분배장치가 없어 <span class="hl-red">문언침해가 명백히 불성립하고 균등으로 메울 수 없음.</span></li>
+    </ul>
+
+    <h4 class="item">5. 종합 침해 가능성 등급</h4>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16%">등록번호</th>
+            <th style="width:27%">청구항1 특징부</th>
+            <th>엠에스 대비 결과</th>
+            <th style="width:11%">등급</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2633674</strong></td>
+            <td data-label="청구항1 특징부">배출측 회동 전달·이탈방지모듈</td>
+            <td data-label="대비 결과">키커레버·로터리핑거 존재(균등 여지 최대)</td>
+            <td class="c" data-label="등급"><span class="grade g-mid">중</span></td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2609914</strong></td>
+            <td data-label="청구항1 특징부">피딩장치 + 제2경로가이드모듈</td>
+            <td data-label="대비 결과">피딩=푸셔 대응, 가이드모듈 흠결</td>
+            <td class="c" data-label="등급"><span class="grade g-midlow">중하</span></td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2633673</strong></td>
+            <td data-label="청구항1 특징부">투입측 회동 이탈방지모듈</td>
+            <td data-label="대비 결과">고정식 가이드로 요소 흠결</td>
+            <td class="c" data-label="등급"><span class="grade g-low">하</span></td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2365435</strong></td>
+            <td data-label="청구항1 특징부">제1경로가이드모듈(승강 롤러)</td>
+            <td data-label="대비 결과">아이들 롤러+고정 가이드, 흠결</td>
+            <td class="c" data-label="등급"><span class="grade g-low">하</span></td>
+          </tr>
+          <tr>
+            <td class="c nowrap" data-label="등록번호"><strong>10-2693178</strong></td>
+            <td data-label="청구항1 특징부">복수장치 + 분배장치(시스템)</td>
+            <td data-label="대비 결과">단일 장치, 분배장치 부재(명백 비침해)</td>
+            <td class="c" data-label="등급"><span class="grade g-lowest">최하</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════ Ⅴ. 핵심 논점 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">Ⅴ. 핵심 논점 (쟁점)</h2>
+
+    <div class="issue">
+      <div class="head"><span class="no">논점 1</span><span>문언침해의 곤란 — 좁은 독립항과 설계회피</span></div>
+      <div class="body">
+        <p>세강스틸러스의 5건 모두 넓은 3부 골격은 전제부에만 두고, 각 독립항이 서로 다른 하위구조를 필수요소로 한정하고 있습니다.
+          엠에스파이프는 바로 그 하위구조를 다른 기구로 치환(승강 롤러→고정 가이드, 승강 인출→로터리키커 회전, 회동 차단→상황별 상이)하여,
+          전요소원칙상 <span class="hl">문언침해를 회피한 정황이 뚜렷</span>합니다.
+          <span class="arrow">→</span> <strong>침해론은 균등론을 전제로 구성해야 합니다.</strong></p>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="head"><span class="no">논점 2</span><span>균등론 3요건의 극복 가능성과 방어 논리</span></div>
+      <div class="body">
+        <ul class="doc">
+          <li><strong>유리한 점</strong> : 양 장치 모두 ‘강관을 한 개씩 안정적으로 투입·전조·배출하며 이탈·추락을 방지’한다는
+            과제해결원리를 공유 <span class="arrow">→</span> 원리 동일성 논거는 확보.</li>
+          <li><strong>불리한 점</strong> : 엠에스파이프는 ‘고정↔회동’, ‘아이들↔구동승강’, ‘단일↔시스템’의 구조적 차이를 들어
+            치환가능성·치환자명성을 부인할 여지가 크고, 엠에스파이프가 별도 등록특허를 보유한 점을
+            <span class="hl">자유실시·독자기술 항변</span>으로 원용할 수 있습니다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="head"><span class="no">논점 3</span><span>이용발명(특허법 제98조) 관계 — 정황은 있으나 만능은 아님</span></div>
+      <div class="body">
+        <p>엠에스파이프의 등록특허가 세강스틸러스의 선공개기술을 종래기술로 인용한 점은 이용관계 주장의 정황입니다.
+          다만 이용관계도 후발명이 선발명의 구성요소를 <strong>실질적으로 전부 포함</strong>할 것을 요하므로,
+          위 요소 흠결 문제가 동일하게 작용합니다.
+          침해론의 보강 논거로 병행하되 <span class="hl-red">단독 결정타로 과신하지 않는 것이 안전</span>합니다.</p>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="head"><span class="no">논점 4</span><span>실시(實施) 증거의 확보 — 실무상 최대 관건</span></div>
+      <div class="body">
+        <p>엠에스파이프가 특허를 ‘보유’하는 것만으로는 침해가 아니며, 침해는 대상 물건의
+          <strong>제조·사용·판매·판매청약 등 실시</strong>를 전제로 합니다.
+          현재 자료는 특허 도면뿐이므로, 가처분의 보전의 필요성(급박성) 소명을 위해
+          <span class="hl">엠에스의 실제 실시 증거(카탈로그·견적서·거래내역·전시/설치 사진·현장 확인 등) 확보가 선결</span>됩니다.</p>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="head"><span class="no">논점 5</span><span>가처분 요건 — 피보전권리 + 보전의 필요성</span></div>
+      <div class="body">
+        <ul class="doc">
+          <li><strong>피보전권리(침해 성립)</strong> : 위와 같이 균등론 의존으로 소명 강도가 높지 않음.</li>
+          <li><strong>보전의 필요성</strong> : 실시 임박·확대로 인한 회복 곤란한 손해 및 긴급성 소명 필요.
+            실시 증거 미확보 시 가처분보다 <span class="hl">권리범위확인심판·본안 우선</span>이 합리적일 수 있음.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="issue">
+      <div class="head"><span class="no">논점 6</span><span>세강스틸러스 등록특허의 무효 리스크 — 상대의 무효항변 대비</span></div>
+      <div class="body">
+        <p>가처분·본안에서 상대는 세강스틸러스 등록특허의 무효(신규성·진보성)를 항변할 것이 예상됩니다.
+          주장 특허(특히 <strong>2633674·2609914</strong>)의 유효성(선행기술 대비 진보성)을 사전에 자체 점검하여,
+          무효 리스크가 낮은 권리를 축으로 삼아야 합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ Ⅵ. 전략 제언 ══════════ -->
+  <section class="paper">
+    <h2 class="sec">Ⅵ. 전략 제언 및 다음 단계</h2>
+
+    <h3 class="sub">1. 권리 선택 — 선택과 집중</h3>
+    <ul class="doc">
+      <li><strong>주위적</strong> : 제10-2633674호(배출측 회동구조) — 균등론에 실물 근거를 댈 수 있는 유일한 권리.</li>
+      <li><strong>예비적</strong> : 제10-2609914호(피딩장치 문언 대응) — 균등 보조 논증 병행.</li>
+      <li>제10-2693178호(시스템)는 비침해가 명백하므로 <span class="hl-red">주장에서 제외 권장.</span></li>
+    </ul>
+
+    <h3 class="sub">2. 실시 증거 확보 방안</h3>
+    <ul class="doc">
+      <li>엠에스파이프 카탈로그·홈페이지·전시회 자료, 거래처 견적서/납품 정황, 설치현장 사진 등 수집.</li>
+      <li>필요시 사실조회·증거보전 신청, 현장 검증 등 절차적 수단 검토.</li>
+    </ul>
+
+    <h3 class="sub">3. 절차 선택 — 가처분 vs 심판 vs 본안</h3>
+    <ul class="doc">
+      <li>실시 증거가 확보되고 균등 논리가 탄탄하면 <strong>가처분</strong>, 그렇지 않으면
+        <strong>권리범위확인심판(적극)</strong>으로 침해 판단을 선(先)확보한 뒤 본안·가처분으로 전개하는
+        <span class="hl">단계적 접근</span>을 검토.</li>
+    </ul>
+
+    <h3 class="sub">4. 본격 진행 전 추가 검토 필요사항</h3>
+    <ul class="doc">
+      <li>엠에스파이프 실제 장치의 구체 사양 확인(<strong>도면 ≠ 실물</strong>).</li>
+      <li>주장 특허의 유효성(무효 리스크) 정밀검토 및 균등론 3요건 입증자료 구축.</li>
+      <li>출원경과금반언(세강 특허 심사·보정 이력) 점검으로 균등 범위 축소 요인 확인.</li>
+    </ul>
+
+    <h3 class="sub">5. 미팅 결정 요청사항</h3>
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30%">결정 항목</th>
+            <th>판단을 위한 논점</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="결정 항목"><strong>신규 선임 여부</strong></td>
+            <td data-label="판단을 위한 논점">균등론 의존·인용 불확실성을 감안한 진행 실익 판단</td>
+          </tr>
+          <tr>
+            <td data-label="결정 항목"><strong>절차 선택</strong></td>
+            <td data-label="판단을 위한 논점">가처분 강행 / 권리범위확인심판 선행 / 본안 병행 중 선택</td>
+          </tr>
+          <tr>
+            <td data-label="결정 항목"><strong>주장 권리</strong></td>
+            <td data-label="판단을 위한 논점">2633674 주위적 + 2609914 예비적 구성 확정</td>
+          </tr>
+          <tr>
+            <td data-label="결정 항목"><strong>증거 확보 지시</strong></td>
+            <td data-label="판단을 위한 논점">엠에스파이프 실시 증거 수집 착수 여부 및 방법</td>
+          </tr>
+          <tr>
+            <td data-label="결정 항목"><strong>비용·일정</strong></td>
+            <td data-label="판단을 위한 논점">단계별 비용, 예상 일정, 상대 무효심판 대응 예산</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="concl">
+      <span class="label">결론</span>
+      문언침해는 어렵고 승부는 <strong>균등론·이용관계</strong>에 있으며, 실무상 <strong>실시 증거 확보가 선결과제</strong>입니다.
+      제10-2633674호를 축으로 하되 무리한 침해 확신보다 균등 3요건 방어 극복과 증거·유효성 보강을 전제로
+      신중하게 절차를 설계하는 것이 바람직합니다.
+    </div>
+  </section>
+
+  <footer>
+    청암국제특허법률사무소 &nbsp;|&nbsp; 세강스틸러스–엠에스파이프 침해가처분 검토 &nbsp;|&nbsp; 2026. 7. 30.<br>
+    내부 검토용 자료 — 대외 배포 및 인용 금지
+  </footer>
+
+</div>
+</body>
+</html>
