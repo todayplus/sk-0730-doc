@@ -895,5 +895,170 @@ var CIRC="①②③④⑤⑥⑦⑧⑨⑩⑪";
   });
 })();
 </script>
+<!-- ▼▼▼ 도면 뷰어 FINAL2 (파일 맨 끝에 추가) ▼▼▼ -->
+<style>
+#lb{display:none!important;}
+#msv{display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;
+ z-index:2147483000;background:#0a1018;overflow:auto;-webkit-overflow-scrolling:touch;}
+#msv.on{display:block;}
+#msv .hd{background:#0f1b2d;color:#fff;padding:9px 12px;font-size:14px;line-height:2.2;}
+#msv .hd .ti{font-weight:700;margin-right:10px;}
+#msv .hd button{border:1px solid #4a6a95;background:#1b3050;color:#fff;border-radius:6px;
+ padding:6px 12px;margin:0 3px;font-size:13px;cursor:pointer;}
+#msv .sub{background:#132340;color:#ffe08a;padding:7px 12px;font-size:13px;line-height:1.9;}
+#msv .chip{display:inline-block;margin:2px 5px 2px 0;padding:2px 10px;border:1px solid #4a6a95;
+ border-radius:999px;color:#fff;cursor:pointer;}
+#msv .bd{text-align:center;padding:12px;}
+#msv .bd img{max-width:100%;height:auto;background:#fff;border-radius:6px;}
+#msv.zoom .bd{text-align:left;}
+#msv.zoom .bd img{max-width:none;width:200%;}
+#msv .err{display:none;color:#ffd9d9;font-size:14px;padding:26px;text-align:center;}
+</style>
+<script>
+(function(){
+ if(window.__msv2) return; window.__msv2=1;
+ if(!Element.prototype.matches) Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector;
+ if(!Element.prototype.closest) Element.prototype.closest=function(s){var e=this;while(e&&e.nodeType===1){if(e.matches(s))return e;e=e.parentElement;}return null;};
+ var CIRC="①②③④⑤⑥⑦⑧⑨⑩⑪";
+ var F=[["fig01","도면 ① 강관 전조가공장치 전체 사시도"],["fig02","도면 ② 전체 측면 구성도"],
+  ["fig03","도면 ③ 공급측 사시도 (A부 상세)"],["fig04","도면 ④ 강관투입모듈 작동도 (a)(b)(c)"],
+  ["fig05","도면 ⑤ 배출측 전체 사시도"],["fig06","도면 ⑥ 배출견인부(170) 상세 (a)(b)"],
+  ["fig07","도면 ⑦ 키커레버(193)·구동실린더(195) 상세"],["fig08","도면 ⑧ 이송·적재 작동도 ①"],
+  ["fig09","도면 ⑨ 이송·적재 작동도 ②"],["fig10","도면 ⑩ 이송·적재 작동도 ③"],
+  ["fig11","도면 ⑪ 배출부 변형예 — 상부가압모듈(167)"]];
+ var R={
+  "110":["강관적재베드",["fig01","fig02","fig03","fig04"]],"111":["수평베드",["fig03","fig04"]],
+  "113":["경사베드",["fig02","fig04"]],"120":["강관투입모듈",["fig03","fig01","fig02"]],
+  "121":["원판형 로터리키커",["fig04","fig02","fig03"]],"121a":["로터리키커 걸림홈",["fig04"]],
+  "123":["로터리키커 회전축",["fig04","fig03","fig01"]],"125":["투입모듈 구동부",["fig03","fig02"]],
+  "125a":["투입모듈 동력전달부",["fig03","fig02"]],"130":["강관공급부",["fig03","fig01","fig02","fig04"]],
+  "131":["공급부 프레임",["fig03","fig01","fig02","fig04"]],"133":["아이들 이송롤러",["fig03","fig01","fig02","fig04"]],
+  "135":["고정식 이탈방지가이드",["fig03","fig04"]],"135a":["가이드 상부부재",["fig03","fig04"]],
+  "135b":["가이드 측면부재",["fig03","fig04"]],"135c":["가이드 높이조정부",["fig03","fig04"]],
+  "140":["푸싱부",["fig01","fig02"]],"141":["푸셔",["fig01","fig02"]],"142":["푸셔 구동부",["fig02","fig01"]],
+  "143":["푸셔 이송레일",["fig01"]],"150":["전조가공부",["fig01","fig02"]],"151":["전조가공부 본체",["fig01","fig02"]],
+  "153":["배출측 가이드레일",["fig05","fig01","fig02","fig06"]],"160":["전조관배출부",["fig05","fig01","fig02"]],
+  "160a":["배출부 변형예",["fig11"]],"161":["배출프레임",["fig05","fig01","fig07","fig11"]],
+  "162":["지지프레임",["fig07"]],"163":["배출롤러(아이들)",["fig05","fig01","fig07","fig11"]],
+  "165":["배출측 스토퍼부",["fig05","fig01","fig11"]],"167":["상부가압모듈(승강 가압판)",["fig11"]],
+  "167a":["가압모듈 실린더",["fig11"]],"167b":["가압판",["fig11"]],"167c":["가압모듈 브라켓",["fig11"]],
+  "170":["배출견인부",["fig06","fig05","fig01","fig02"]],"171":["견인부 이송프레임",["fig06","fig05"]],
+  "173":["클램프유닛",["fig06","fig05"]],"173a":["클램프 본체",["fig06","fig05"]],
+  "173b":["클램프 구동모터",["fig06","fig05"]],"173c":["이송 구동모터",["fig06","fig05"]],
+  "173d":["클램프 죠",["fig06","fig05"]],"173e":["클램프 가이드",["fig06","fig05"]],
+  "175":["LM가이드·랙",["fig06","fig05"]],"175a":["이송 캐리지",["fig06","fig05"]],
+  "176":["견인부 커버",["fig06","fig05"]],"180":["전조관적재부",["fig10","fig05","fig01","fig08","fig09"]],
+  "181":["적재대 프레임",["fig10","fig05","fig08","fig09"]],
+  "190":["전조관이송부",["fig05","fig01","fig08","fig09","fig10"]],
+  "191":["이송프레임",["fig05","fig08","fig09","fig10"]],
+  "193":["회동식 키커레버",["fig07","fig05","fig08","fig09","fig10"]],
+  "193-1":["키커레버 절곡지지판",["fig07"]],"193a":["키커레버 힌지축",["fig07","fig05","fig08"]],
+  "195":["키커레버 구동실린더",["fig07","fig05","fig08","fig09","fig10"]],
+  "195a":["실린더 본체",["fig07"]],"195b":["실린더 로드",["fig07"]],"195c":["실린더 브라켓",["fig07"]],
+  "197":["로터리핑거(적재 이송레버)",["fig08","fig05","fig09","fig10"]],
+  "197a":["로터리핑거 암",["fig08","fig05","fig09","fig10"]],
+  "197b":["로터리핑거 구동실린더",["fig08","fig05","fig09","fig10"]]};
+ var IDX={}; for(var q=0;q<F.length;q++) IDX[F[q][0]]=q;
+ function cand(id){ return [id+".png","img/"+id+".png","images/"+id+".png",id+".PNG",id+".jpg"]; }
+ var res={};
+
+ var v=document.createElement("div"); v.id="msv";
+ v.innerHTML='<div class="hd"><span class="ti"></span><button data-a="prev">‹ 이전</button>'+
+  '<button data-a="next">다음 ›</button><button data-a="zoom">확대</button>'+
+  '<button data-a="close">닫기 ✕</button></div><div class="sub"></div>'+
+  '<div class="bd"><img alt=""><div class="err"></div></div>';
+ document.body.appendChild(v);
+ var vi=v.getElementsByTagName("img")[0], ve=v.querySelector(".err"),
+     vt=v.querySelector(".ti"), vs=v.querySelector(".sub"), cur=0, ci=0, cl=[];
+ vi.onerror=function(){ ci++; if(ci<cl.length){ vi.src=cl[ci]; }
+  else{ vi.style.display="none"; ve.style.display="block";
+   ve.innerHTML="이미지를 불러오지 못했습니다 : "+F[cur][0]+".png<br>저장소 루트에 소문자 파일명으로 있는지 확인하세요."; } };
+ vi.onload=function(){ res[F[cur][0]]=vi.getAttribute("src"); vi.style.display=""; ve.style.display="none"; };
+
+ function show(i,sub){
+  cur=(i+F.length)%F.length;
+  vt.innerHTML=F[cur][1]; vs.innerHTML=sub||"";
+  cl=res[F[cur][0]]?[res[F[cur][0]]]:cand(F[cur][0]); ci=0;
+  vi.style.display=""; ve.style.display="none"; vi.src=cl[0];
+  v.className="on"; v.scrollTop=0;
+ }
+ function hide(){ v.className=""; }
+ function showRef(no){
+  var r=R[no]; if(!r||!r[1].length) return false;
+  var c=[]; for(var j=0;j<r[1].length;j++){
+   c.push('<span class="chip" data-fig="'+r[1][j]+'">도면 '+CIRC.charAt(IDX[r[1][j]])+(j?"":" (대표)")+'</span>'); }
+  show(IDX[r[1][0]],"<b>부호 "+no+" · "+r[0]+"</b> &nbsp; 관련 도면 : "+c.join(" ")); return true;
+ }
+
+ document.addEventListener("click",function(e){
+  var t=e.target||e.srcElement; if(!t||!t.closest) return;
+  if(v.contains&&v.contains(t)){
+   var a=t.getAttribute?t.getAttribute("data-a"):null, f0=t.getAttribute?t.getAttribute("data-fig"):null;
+   if(a==="close") hide(); else if(a==="prev") show(cur-1,""); else if(a==="next") show(cur+1,"");
+   else if(a==="zoom") v.className=(v.className.indexOf("zoom")>-1)?"on":"on zoom";
+   else if(f0&&IDX[f0]!=null) show(IDX[f0],"");
+   if(e.stopPropagation) e.stopPropagation(); return;
+  }
+  if(t.tagName==="IMG"&&t.closest(".figcard")){
+   var g=t.closest(".figcard"), id=(g.id&&IDX[g.id]!=null)?g.id:null;
+   if(id==null){ var di=parseInt(t.getAttribute("data-i"),10); if(F[di]) id=F[di][0]; }
+   if(id!=null&&IDX[id]!=null){ show(IDX[id],""); if(e.stopPropagation) e.stopPropagation(); if(e.preventDefault) e.preventDefault(); }
+   return;
+  }
+  var b=t.closest("[data-no],[data-ref],[data-fig]"); if(!b) return;
+  var f2=b.getAttribute("data-fig"), no=b.getAttribute("data-no")||b.getAttribute("data-ref"), ok=false;
+  if(f2&&IDX[f2]!=null){ show(IDX[f2],no?("부호 "+no):""); ok=true; } else if(no){ ok=showRef(no); }
+  if(ok){ if(e.stopPropagation) e.stopPropagation(); if(e.preventDefault) e.preventDefault(); }
+ },true);
+ document.addEventListener("keydown",function(e){
+  if(v.className.indexOf("on")<0) return;
+  if(e.key==="Escape") hide(); if(e.key==="ArrowLeft") show(cur-1,""); if(e.key==="ArrowRight") show(cur+1,"");
+ });
+
+ var gal=document.getElementById("figGallery");
+ if(gal && !gal.getElementsByTagName("img").length){
+  var h=""; for(var i2=0;i2<F.length;i2++){
+   var nos=[]; for(var k2 in R){ if(R[k2][1].join(",").indexOf(F[i2][0])>-1) nos.push(k2); }
+   h+='<figure class="figcard" id="'+F[i2][0]+'"><figcaption class="cap">'+F[i2][1]+'</figcaption>'+
+      '<img data-i="'+i2+'" alt="'+F[i2][1]+'"><div class="nos"><b>주요 부호</b> · '+nos.join(", ")+'</div></figure>'; }
+  gal.className="figgrid"; gal.innerHTML=h;
+  var ims=gal.getElementsByTagName("img");
+  Array.prototype.forEach.call(ims,function(im){
+   var id=F[parseInt(im.getAttribute("data-i"),10)][0], c=cand(id), j=0;
+   im.onload=function(){ res[id]=im.getAttribute("src"); };
+   im.onerror=function(){ j++; if(j<c.length){ im.src=c[j]; } else { im.onerror=null; im.parentNode.className+=" missing"; } };
+   im.src=c[0]; });
+ }
+ var ix=document.getElementById("refIndex");
+ if(ix && !ix.getElementsByTagName("table").length){
+  var t2='<table><thead><tr><th style="width:16%">부호</th><th style="width:44%">명칭</th><th>관련 도면 (앞이 대표)</th></tr></thead><tbody>';
+  for(var k3 in R){ var lk="";
+   for(var m3=0;m3<R[k3][1].length;m3++) lk+='<button type="button" class="ref" data-fig="'+R[k3][1][m3]+'">'+CIRC.charAt(IDX[R[k3][1][m3]])+'</button> ';
+   t2+='<tr><td class="c" data-label="부호"><b>'+k3+'</b></td><td data-label="명칭">'+R[k3][0]+'</td><td data-label="관련 도면">'+lk+'</td></tr>'; }
+  ix.className="t-wrap"; ix.innerHTML=t2+'</tbody></table>';
+ }
+ var SC='.ms, .concl, td[data-label="엠에스 대응"], p.legend';
+ Array.prototype.forEach.call(document.querySelectorAll(SC),function(root){
+  var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false), ns=[], n;
+  while((n=w.nextNode())){ if(n.nodeValue.replace(/\s/g,"") && n.parentElement && !n.parentElement.closest(".ref,.chip")) ns.push(n); }
+  Array.prototype.forEach.call(ns,function(node){
+   var s=node.nodeValue, re=/1\d{2}(?:[a-e]|-1)?/g, m, last=0, hit=false, fr=document.createDocumentFragment();
+   while((m=re.exec(s))){
+    var no=m[0]; if(!R[no]) continue;
+    if(/[0-9A-Za-z\-]/.test(s.charAt(m.index-1))) continue;
+    if(/[0-9A-Za-z]/.test(s.charAt(m.index+no.length))) continue;
+    fr.appendChild(document.createTextNode(s.slice(last,m.index)));
+    var bt=document.createElement("button"); bt.type="button"; bt.className="ref";
+    bt.setAttribute("data-no",no); bt.title=R[no][0]; bt.appendChild(document.createTextNode(no));
+    fr.appendChild(bt); last=m.index+no.length; hit=true; }
+   if(!hit) return;
+   fr.appendChild(document.createTextNode(s.slice(last)));
+   node.parentNode.replaceChild(fr,node); });
+ });
+ var gb=document.getElementById("goFig");
+ if(gb){ gb.innerHTML="▦ 도면 보기";
+  gb.onclick=function(){ var g2=document.getElementById("figGallery"); if(g2) g2.scrollIntoView(); }; }
+})();
+</script>
 </body>
 </html>
