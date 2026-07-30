@@ -895,139 +895,183 @@ var CIRC="①②③④⑤⑥⑦⑧⑨⑩⑪";
   });
 })();
 </script>
-<!-- ▼▼▼ 도면 갤러리 · 부호 링크 (파일 맨 끝에 추가) ▼▼▼ -->
+<!-- ▼▼▼ 도면 갤러리 · 부호 링크 v2 (파일 맨 끝) ▼▼▼ -->
+<style>
+#msLb{position:fixed;inset:0;z-index:99999;background:rgba(8,14,24,.93);display:none;}
+#msLb.on{display:flex;flex-direction:column;}
+#msLb .msbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 12px;background:#0f1b2d;color:#fff;font-size:14px;}
+#msLb .msbar .tt{flex:1 1 auto;min-width:140px;font-weight:700;}
+#msLb .msbar button{border:1px solid #4a6a95;background:#1b3050;color:#fff;border-radius:6px;padding:7px 11px;font-size:13px;cursor:pointer;}
+#msLb .mshit{padding:7px 12px;background:#132340;color:#cfe0f5;font-size:13px;line-height:1.7;}
+#msLb .mshit .chip{display:inline-block;margin:2px 4px 2px 0;padding:2px 9px;border:1px solid #4a6a95;border-radius:999px;color:#fff;cursor:pointer;}
+#msLb .msstage{flex:1 1 auto;overflow:auto;display:flex;align-items:center;justify-content:center;padding:10px;}
+#msLb .msstage img{max-width:100%;max-height:100%;background:#fff;border-radius:6px;}
+#msLb.zoom .msstage{align-items:flex-start;justify-content:flex-start;}
+#msLb.zoom .msstage img{max-width:none;max-height:none;width:190%;}
+#msLb .msmsg{color:#ffd9d9;font-size:14px;text-align:center;padding:24px;}
+#figGallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:14px 0 6px;}
+#figGallery .figcard{border:1px solid #d8dee8;border-radius:8px;background:#fff;padding:10px;}
+#figGallery .figcard img{width:100%;height:auto;display:block;cursor:zoom-in;border:1px solid #eef1f6;border-radius:4px;}
+#figGallery .figcard .cap{font-weight:700;font-size:.92rem;margin-bottom:6px;color:#12315b;}
+#figGallery .figcard .nos{font-size:.82rem;color:#5b6675;margin-top:7px;}
+#figGallery .figcard.missing img{display:none;}
+#figGallery .figcard.missing .cap::after{content:" (이미지 없음 · 파일명 확인)";color:#b3261e;font-weight:400;}
+span.ref{display:inline-block;min-width:2.1em;text-align:center;padding:0 6px;margin:0 1px;border:1px solid #9db6d8;border-radius:5px;background:#eef4ff;color:#12315b;font-weight:700;font-size:.9em;line-height:1.6;cursor:pointer;}
+span.ref:hover{background:#12315b;color:#fff;}
+span.ref.nofig{background:#f1f3f6;border-color:#cfd6e0;color:#8a94a2;cursor:default;}
+#goFig{position:fixed;right:14px;bottom:14px;z-index:9998;border:1px solid #12315b;background:#12315b;color:#fff;border-radius:999px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);}
+@media print{#goFig,#msLb{display:none!important;}}
+</style>
 <script>
 (function(){
   var BASES=["","img/","images/"], EXTS=[".png",".PNG",".jpg"];
 
   var FIGS=[
-    {id:"fig01",t:"도 1",d:"전조가공장치 전체 구성",           n:["110","120","130","140","150","160","170","180","190"]},
-    {id:"fig02",t:"도 2",d:"강관적재베드 및 강관투입모듈",      n:["110","111","113","120","121"]},
-    {id:"fig03",t:"도 3",d:"강관투입모듈(로터리키커) 작동",     n:["110","120","121","130","133"]},
-    {id:"fig04",t:"도 4",d:"강관공급부 · 푸싱부 상세",          n:["130","133","135","140","141"]},
-    {id:"fig05",t:"도 5",d:"전조가공부 · 전조관배출부",         n:["150","160","163","165","170"]},
-    {id:"fig06",t:"도 6",d:"배출견인부 및 전조관이송부",        n:["170","190","191","193","197"]},
-    {id:"fig07",t:"도 7",d:"키커레버 회동 동작 (1)",            n:["190","191","193","193-1"]},
-    {id:"fig08",t:"도 8",d:"키커레버 회동 동작 (2)",            n:["193","193-1","197"]},
-    {id:"fig09",t:"도 9",d:"로터리핑거 정지 상태",              n:["191","193","197"]},
-    {id:"fig10",t:"도 10",d:"로터리핑거 해제 · 전조관 적재",    n:["180","190","191","193","197"]},
-    {id:"fig11",t:"도 11",d:"변형예 : 상부가압모듈",            n:["160","163","167"]}
+    {id:"fig01",t:"도 1",d:"전조가공장치 전체 구성",        n:["110","120","130","140","141","150","160","170","180","190"]},
+    {id:"fig02",t:"도 2",d:"강관적재베드 및 강관투입모듈",   n:["110","111","113","120","121"]},
+    {id:"fig03",t:"도 3",d:"강관투입모듈 작동",             n:["110","120","121","130","133"]},
+    {id:"fig04",t:"도 4",d:"원판형 로터리키커 · 공급부 · 푸싱부", n:["121","130","133","135","140","141"]},
+    {id:"fig05",t:"도 5",d:"전조가공부 · 전조관배출부",      n:["150","160","163","165","170"]},
+    {id:"fig06",t:"도 6",d:"배출견인부 및 전조관이송부",     n:["170","190","191","193","197"]},
+    {id:"fig07",t:"도 7",d:"회동식 키커레버 동작",           n:["190","191","193","193-1"]},
+    {id:"fig08",t:"도 8",d:"좌우회전 로터리핑거 동작",       n:["193","193-1","197"]},
+    {id:"fig09",t:"도 9",d:"로터리핑거 정지 상태",           n:["191","193","197"]},
+    {id:"fig10",t:"도 10",d:"전조관 이송 · 적재",            n:["180","190","191","193","197"]},
+    {id:"fig11",t:"도 11",d:"변형예 : 상부가압모듈",         n:["160","163","167"]}
   ];
 
   var NAMES={
     "110":"강관적재베드","111":"수평베드","113":"경사베드",
-    "120":"강관투입모듈","121":"로터리키커",
+    "120":"강관투입모듈","121":"원판형 로터리키커",
     "130":"강관공급부","133":"아이들 이송롤러","135":"고정식 이탈방지가이드",
     "140":"푸싱부","141":"푸셔","150":"전조가공부",
     "160":"전조관배출부","163":"배출롤러","165":"이탈방지가이드","167":"상부가압모듈(변형예)",
     "170":"배출견인부","180":"전조관적재부",
-    "190":"전조관이송부","191":"전조관이송레일","193":"키커레버","193-1":"절곡지지판","197":"로터리핑거"
+    "190":"전조관이송부","191":"전조관이송레일","193":"회동식 키커레버","193-1":"절곡지지판","197":"좌우회전 로터리핑거"
+  };
+
+  /* 부호별 대표(먼저 열리는) 도면 */
+  var PRIMARY={
+    "110":"fig02","111":"fig02","113":"fig02","120":"fig03","121":"fig04",
+    "130":"fig04","133":"fig04","135":"fig04","140":"fig01","141":"fig01",
+    "150":"fig05","160":"fig05","163":"fig05","165":"fig05","167":"fig11",
+    "170":"fig06","180":"fig10","190":"fig06","191":"fig07",
+    "193":"fig07","193-1":"fig07","197":"fig08"
   };
 
   var byId={}, refFig={};
   FIGS.forEach(function(f,i){ f.i=i; byId[f.id]=f;
     f.n.forEach(function(k){ (refFig[k]=refFig[k]||[]).push(f.id); }); });
+  Object.keys(refFig).forEach(function(k){
+    var p=PRIMARY[k];
+    if(p && refFig[k].indexOf(p)>0){ refFig[k].splice(refFig[k].indexOf(p),1); refFig[k].unshift(p); }
+  });
 
-  function ensure(id,cls,headText){
+  function cands(f){ var a=[]; BASES.forEach(function(b){ EXTS.forEach(function(e){ a.push(b+f.id+e); }); }); return a; }
+  function ensure(id,cls,head){
     var el=document.getElementById(id);
     if(!el){
       var hs=document.querySelectorAll("h2,h3,h4"), a=null,i;
-      for(i=0;i<hs.length;i++){ if(hs[i].textContent.indexOf(headText)>=0){a=hs[i];break;} }
+      for(i=0;i<hs.length;i++){ if(hs[i].textContent.indexOf(head)>=0){a=hs[i];break;} }
       el=document.createElement("div"); el.id=id;
       if(a){ var nx=a.nextElementSibling;
         if(nx&&nx.tagName==="P") a.parentNode.insertBefore(el,nx.nextSibling);
         else a.parentNode.insertBefore(el,a.nextSibling);
       } else { (document.querySelector(".wrap")||document.body).appendChild(el); }
     }
-    el.className=cls; el.innerHTML=""; return el;
-  }
-  function cands(f){ var a=[]; BASES.forEach(function(b){ EXTS.forEach(function(e){ a.push(b+f.id+e); }); }); return a; }
-  function makeImg(f,onFail){
-    var c=cands(f), k=0, im=document.createElement("img");
-    im.alt=f.t+" "+f.d; im.loading="lazy";
-    im.onload=function(){ f.src=im.getAttribute("src"); };
-    im.onerror=function(){ k++; if(k<c.length){ im.src=c[k]; } else { im.onerror=null; if(onFail) onFail(); } };
-    im.src=c[0]; return im;
+    if(cls) el.className=cls;
+    el.innerHTML=""; return el;
   }
   function refSpan(k){
-    var s=document.createElement("span");
-    s.className="ref"+((k==="193"||k==="197"||k==="167")?" key-ref":"");
-    s.setAttribute("data-ref",k); s.setAttribute("tabindex","0");
-    s.title=(NAMES[k]||"")+" — 도면 보기"; s.textContent=k; return s;
+    var s=document.createElement("span"), has=!!(refFig[k]&&refFig[k].length);
+    s.className="ref"+(has?"":" nofig"); s.setAttribute("data-ref",k);
+    s.setAttribute("tabindex","0");
+    s.title=(NAMES[k]||"")+(has?" — "+byId[refFig[k][0]].t+" 보기":" — 해당 도면 없음");
+    s.textContent=k; return s;
   }
 
-  /* 1) 도면 갤러리 */
-  var gal=ensure("figGallery","figgrid","등록특허 도면");
-  FIGS.forEach(function(f){
-    var card=document.createElement("div"); card.className="figcard";
-    var cap=document.createElement("div"); cap.className="cap"; cap.textContent=f.t+" — "+f.d;
-    var im=makeImg(f,function(){ card.classList.add("missing"); });
-    im.addEventListener("click",function(){ open(f.i,""); });
-    var nos=document.createElement("div"); nos.className="nos";
-    nos.appendChild(document.createTextNode("부호 : "));
-    f.n.forEach(function(k){ nos.appendChild(refSpan(k)); nos.appendChild(document.createTextNode(" ")); });
-    card.appendChild(cap); card.appendChild(im); card.appendChild(nos); gal.appendChild(card);
-  });
+  /* 이전 버전 잔재 제거 */
+  var oldLb=document.getElementById("lb"); if(oldLb&&oldLb.parentNode) oldLb.parentNode.removeChild(oldLb);
 
-  /* 2) 부호 색인표 */
-  var idx=ensure("refIndex","t-wrap","부호 색인");
-  var keys=Object.keys(NAMES).sort(function(a,b){ return parseFloat(a.replace("-","."))-parseFloat(b.replace("-",".")); });
-  var tb=document.createElement("table");
-  var h='<caption>엠에스파이프 제10-2894999호 부호 ↔ 도면 대조표</caption>'+
-        '<thead><tr><th class="c">부호</th><th>명칭</th><th class="c">관련 도면</th></tr></thead><tbody>';
-  keys.forEach(function(k){
-    var fl=(refFig[k]||[]).map(function(id){
-      return '<span class="ref" data-fig="'+id+'">'+byId[id].t.replace(/\s/g,"")+'</span>'; }).join(" ");
-    h+='<tr><td class="c"><span class="ref" data-ref="'+k+'">'+k+'</span></td><td>'+NAMES[k]+'</td><td class="c">'+(fl||"-")+'</td></tr>';
-  });
-  tb.innerHTML=h+"</tbody></table>".replace("</table>","");
-  tb.innerHTML=h+"</tbody>"; idx.appendChild(tb);
-
-  /* 3) 라이트박스 */
-  var lb=document.getElementById("lb");
-  if(!lb){ lb=document.createElement("div"); lb.id="lb"; document.body.appendChild(lb); }
-  lb.innerHTML='<div class="bar"><span class="t"></span>'+
+  /* 라이트박스(자체 스타일) */
+  var ov=document.getElementById("msLb");
+  if(!ov){ ov=document.createElement("div"); ov.id="msLb"; document.body.appendChild(ov); }
+  ov.innerHTML='<div class="msbar"><span class="tt"></span>'+
     '<button data-act="prev">‹ 이전</button><button data-act="next">다음 ›</button>'+
     '<button data-act="zoom">확대</button><button data-act="close">닫기 ✕</button></div>'+
-    '<div class="hit"></div><div class="stage"><img alt=""></div>';
-  var cur=0;
-  function open(i,hit){
+    '<div class="mshit"></div><div class="msstage"><img alt=""><div class="msmsg" style="display:none"></div></div>';
+  var im=ov.querySelector(".msstage img"), msg=ov.querySelector(".msmsg"), cur=0;
+  im.onerror=function(){ im.style.display="none"; msg.style.display="block";
+    msg.textContent="이미지를 불러오지 못했습니다 : "+im.getAttribute("src")+" (파일명·대소문자 확인)"; };
+  im.onload=function(){ im.style.display=""; msg.style.display="none"; };
+
+  function open(i,hitHtml){
     cur=(i+FIGS.length)%FIGS.length; var f=FIGS[cur];
-    lb.querySelector(".t").textContent=f.t+" — "+f.d;
-    lb.querySelector(".hit").textContent=hit||("부호 : "+f.n.join(", "));
-    lb.querySelector("img").src=f.src||cands(f)[0];
-    lb.classList.add("on"); lb.classList.remove("zoom");
+    ov.querySelector(".tt").textContent=f.t+" — "+f.d;
+    ov.querySelector(".mshit").innerHTML=hitHtml||("부호 : "+f.n.map(function(k){
+      return '<span class="chip" data-ref="'+k+'">'+k+" "+(NAMES[k]||"")+"</span>"; }).join(" "));
+    im.src=f.src||cands(f)[0];
+    ov.classList.add("on"); ov.classList.remove("zoom");
     document.body.style.overflow="hidden";
   }
-  function close(){ lb.classList.remove("on","zoom"); document.body.style.overflow=""; }
+  function close(){ ov.classList.remove("on","zoom"); document.body.style.overflow=""; }
   function openRef(k){
     var list=refFig[k]||[]; if(!list.length) return;
-    open(byId[list[0]].i,"부호 "+k+" ("+(NAMES[k]||"")+") · 관련 도면 : "+
-      list.map(function(id){return byId[id].t.replace(/\s/g,"");}).join(", "));
+    var chips=list.map(function(id,j){
+      return '<span class="chip" data-fig="'+id+'">'+byId[id].t.replace(/\s/g,"")+(j===0?" (대표)":"")+"</span>"; }).join(" ");
+    open(byId[list[0]].i,"<b>부호 "+k+" · "+(NAMES[k]||"")+"</b> &nbsp; 관련 도면 : "+chips);
   }
-  lb.addEventListener("click",function(e){
-    var b=e.target.getAttribute&&e.target.getAttribute("data-act");
-    if(b==="close") close();
-    else if(b==="prev") open(cur-1,"");
-    else if(b==="next") open(cur+1,"");
-    else if(b==="zoom") lb.classList.toggle("zoom");
-    else if(e.target===lb||e.target.className==="stage") close();
+  ov.addEventListener("click",function(e){
+    var t=e.target, a=t.getAttribute&&t.getAttribute("data-act");
+    if(a==="close") close();
+    else if(a==="prev") open(cur-1,"");
+    else if(a==="next") open(cur+1,"");
+    else if(a==="zoom") ov.classList.toggle("zoom");
+    else if(t===ov||(t.className||"")==="msstage") close();
   });
   document.addEventListener("keydown",function(e){
-    if(!lb.classList.contains("on")) return;
+    if(!ov.classList.contains("on")) return;
     if(e.key==="Escape") close();
     if(e.key==="ArrowLeft") open(cur-1,"");
     if(e.key==="ArrowRight") open(cur+1,"");
   });
-
-  /* 4) 클릭 위임 */
   document.addEventListener("click",function(e){
     var t=e.target; if(!t.getAttribute) return;
-    if(t.getAttribute("data-fig")) open(byId[t.getAttribute("data-fig")].i,"");
-    else if(t.getAttribute("data-ref")) openRef(t.getAttribute("data-ref"));
+    var fg=t.getAttribute("data-fig"), rf=t.getAttribute("data-ref");
+    if(fg&&byId[fg]) open(byId[fg].i,"");
+    else if(rf) openRef(rf);
   });
 
-  /* 5) 본문 부호 자동 링크 */
+  /* 갤러리 */
+  var gal=ensure("figGallery","figgrid","등록특허 도면");
+  FIGS.forEach(function(f){
+    var card=document.createElement("div"); card.className="figcard";
+    var cap=document.createElement("div"); cap.className="cap"; cap.textContent=f.t+" — "+f.d;
+    var c=cands(f), k=0, img=document.createElement("img");
+    img.alt=f.t+" "+f.d; img.loading="lazy";
+    img.onload=function(){ f.src=img.getAttribute("src"); };
+    img.onerror=function(){ k++; if(k<c.length){ img.src=c[k]; } else { img.onerror=null; card.classList.add("missing"); } };
+    img.src=c[0];
+    img.addEventListener("click",function(){ open(f.i,""); });
+    var nos=document.createElement("div"); nos.className="nos";
+    nos.appendChild(document.createTextNode("부호 : "));
+    f.n.forEach(function(k2){ nos.appendChild(refSpan(k2)); nos.appendChild(document.createTextNode(" ")); });
+    card.appendChild(cap); card.appendChild(img); card.appendChild(nos); gal.appendChild(card);
+  });
+
+  /* 부호 색인 */
+  var idx=ensure("refIndex","t-wrap","부호 색인");
+  var keys=Object.keys(NAMES).sort(function(a,b){ return parseFloat(a.replace("-","."))-parseFloat(b.replace("-",".")); });
+  var h='<table><caption>엠에스파이프 제10-2894999호 부호 ↔ 도면 대조표</caption>'+
+        '<thead><tr><th>부호</th><th>명칭</th><th>대표 도면</th><th>그 밖의 도면</th></tr></thead><tbody>';
+  keys.forEach(function(k){
+    var l=refFig[k]||[], first=l[0]?'<span class="ref" data-fig="'+l[0]+'">'+byId[l[0]].t.replace(/\s/g,"")+"</span>":"-";
+    var rest=l.slice(1).map(function(id){ return '<span class="ref" data-fig="'+id+'">'+byId[id].t.replace(/\s/g,"")+"</span>"; }).join(" ")||"-";
+    h+='<tr><td><span class="ref" data-ref="'+k+'">'+k+'</span></td><td>'+NAMES[k]+"</td><td>"+first+"</td><td>"+rest+"</td></tr>";
+  });
+  idx.innerHTML=h+"</tbody></table>";
+
+  /* 본문 부호 자동 링크 */
   function linkIn(root){
     if(!root||root.getAttribute("data-reflinked")) return;
     root.setAttribute("data-reflinked","1");
@@ -1035,7 +1079,7 @@ var CIRC="①②③④⑤⑥⑦⑧⑨⑩⑪";
     while((n=w.nextNode())) list.push(n);
     list.forEach(function(tn){
       var p=tn.parentNode; if(!p||p.nodeName==="SCRIPT"||p.nodeName==="STYLE") return;
-      if(p.classList&&p.classList.contains("ref")) return;
+      if(p.classList&&(p.classList.contains("ref")||p.classList.contains("chip"))) return;
       var s=tn.nodeValue, re=/\d{3}(?:-\d)?/g, m, last=0, found=false, frag=document.createDocumentFragment();
       while((m=re.exec(s))){
         var k=m[0]; if(!NAMES[k]) continue;
@@ -1054,13 +1098,14 @@ var CIRC="①②③④⑤⑥⑦⑧⑨⑩⑪";
   F.call(document.querySelectorAll("li,p.legend"),function(el){
     if(/장치\s*구성/.test(el.textContent)||/처럼 표시된/.test(el.textContent)) linkIn(el); });
   F.call(document.querySelectorAll("table"),function(tbl){
+    if(tbl.closest&&tbl.closest("#refIndex")) return;
     var ths=tbl.querySelectorAll("thead th"), ci=-1, i;
     for(i=0;i<ths.length;i++){ if(ths[i].textContent.indexOf("엠에스")>=0) ci=i; }
     if(ci<0) return;
     F.call(tbl.querySelectorAll("tbody tr"),function(tr){ if(tr.children[ci]) linkIn(tr.children[ci]); });
   });
 
-  /* 6) 우측 하단 도면 버튼 */
+  /* 도면 버튼 */
   var btn=document.getElementById("goFig");
   if(!btn){ btn=document.createElement("button"); btn.id="goFig"; btn.type="button";
             btn.textContent="▦ 도면"; document.body.appendChild(btn); }
